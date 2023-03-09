@@ -13,11 +13,9 @@ class Accounts(AbstractBaseUser, PermissionsMixin):
     userid = models.IntegerField(unique=True)
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
     groups = models.JSONField()
-
     name = models.CharField(max_length=255)
 
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
 
     date_joined = models.DateTimeField(default=timezone.now)
 
