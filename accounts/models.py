@@ -5,9 +5,9 @@ from .managers import AccountManager
 
 class Accounts(AbstractBaseUser, PermissionsMixin):
     USER_TYPE_CHOICES = (
-      (1, 'student'),
+      (1, 'institution'),
       (2, 'teacher'),
-      (3, 'institution'),
+      (3, 'student'),
     )
     iid = models.IntegerField()
     userid = models.IntegerField(unique=True)
