@@ -5,7 +5,8 @@ class AccountManager(BaseUserManager):
     def create_user(self, userid, password, **extra_fields):
         if not userid:
             raise ValueError(_("The userid must be set"))
-        user = self.model(userid=userid,groups=userid, **extra_fields)
+        user = self.model(userid=userid, **extra_fields)
+        user.groups.append(str(userid))
         user.set_password(password)
         user.save()
         return user

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import AccountManager
@@ -12,7 +13,11 @@ class Accounts(AbstractBaseUser, PermissionsMixin):
     iid = models.IntegerField()
     userid = models.IntegerField(unique=True)
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
-    groups = models.JSONField()
+    groups = ArrayField(
+        models.CharField(max_length=50),
+        default=list,
+        blank=False
+        )
     name = models.CharField(max_length=255)
 
     is_active = models.BooleanField(default=True)
